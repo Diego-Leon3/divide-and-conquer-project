@@ -50,9 +50,9 @@ def main():
         merge_avg, quick_avg = benchmark_size(size, trials)
 
         if merge_avg < quick_avg:
-            faster = "Merge Sort"
+            faster = f"Merge Sort ({quick_avg / merge_avg:.1f}x faster)"
         elif quick_avg < merge_avg:
-            faster = "Quick Sort"
+            faster = f"Quick Sort ({merge_avg / quick_avg:.1f}x faster)"
         else:
             faster = "Tie"
 
