@@ -16,7 +16,7 @@ def time_sort(sort_function, data):
     return sorted_data, end - start
 
 
-def benchmark_size(size, trials=5):
+def benchmark_size(size, trials=7):
     merge_total = 0
     quick_total = 0
 
@@ -30,7 +30,7 @@ def benchmark_size(size, trials=5):
 
         if merge_result != expected or quick_result != expected:
             raise ValueError(
-                f"Sorting results did not match for size {size}, trial {trial}."
+                f"Sorting results were incorrect for size {size}, trial {trial}."
             )
 
         merge_total += merge_time
@@ -41,7 +41,7 @@ def benchmark_size(size, trials=5):
 
 def main():
     sizes = [1000, 5000, 10000, 20000, 50000, 100000, 200000, 300000]
-    trials = 5
+    trials = 7
 
     print(f"Running {trials} trials per dataset size.")
     print()
@@ -50,9 +50,9 @@ def main():
         merge_avg, quick_avg = benchmark_size(size, trials)
 
         if merge_avg < quick_avg:
-            faster = f"Merge Sort ({quick_avg / merge_avg:.1f}x faster)"
+            faster = f"Merge Sort ({quick_avg / merge_avg:.2f}x faster)"
         elif quick_avg < merge_avg:
-            faster = f"Quick Sort ({merge_avg / quick_avg:.1f}x faster)"
+            faster = f"Quick Sort ({merge_avg / quick_avg:.2f}x faster)"
         else:
             faster = "Tie"
 
